@@ -10,6 +10,8 @@ console.log = function(){
 
 const Discord = require('discord.js')
 const Ladder = require('./modules/ladder')
+const Planning = require('./modules/planning')
+
 const bot = new Discord.Client()
 bot.login(process.env.DISCORD_TOKEN)
 
@@ -22,5 +24,7 @@ bot.on('message', async function(message){
 
     if(message.content == "/ladder"){
         Ladder.getImage(message)
+    }else if(message.content == "/planning"){
+        Planning.getImage(message)
     }
 })
