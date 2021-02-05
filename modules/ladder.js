@@ -6,9 +6,9 @@ const Discord = require('discord.js')
 const Canvas = require('canvas')
 
 const summoners = new Array(
-    "TMS ACKK", "TMS Shacøvid", /*"TMS Wazzy",*/ "TMS Aaron", "TMS Rakluuhr", "TMS Konogan", "TMS Frobei", 
-    "TMS Sirutop", "TMS Zyguan", "TMS Floliroy", "TMS Zel", "TMS Verigular", "TMS Tragoedia", "TMS RONFLEX",
-    "TMS cripito", "TMS Strelok", "TMS Naiirod", "TMS Crazy Genius", "TMS Sam"
+    ["TMS ACKK", "TFTACKK"], ["TMS Shacøvid"], ["TMS Aaron", "TMS Aaron TFT"], ["TMS Rakluuhr"], ["TMS Konogan"], 
+    ["TMS Frobei"], ["TMS Sirutop"], ["TMS Zyguan"], ["TMS Floliroy"], ["TMS Zel"], ["TMS Verigular"], ["TMS Tragoedia"], 
+    ["TMS RONFLEX"], ["TMS cripito"], ["TMS Strelok"], ["TMS Naiirod"], ["TMS Crazy Genius"]
 )
 
 const tierShortcuts = new Map()
@@ -108,10 +108,17 @@ module.exports = class Ladder{
         context.drawImage(await Canvas.loadImage("./Ladder.png"), 0, 0, canvas.width, canvas.height)
     
         let players = new Array()
-        for await(let name of summoners){
-            const player = await getTftSummonerByName(name)
-            if(player){
-                players.push(player)
+        for await(let names of summoners){
+            let playersIntern = new Array()
+            for await(let name of names){
+                const player = await getTftSummonerByName(name)
+                if(player){
+                    playersIntern.push(player)
+                }
+            }
+            playersIntern.orderByElo()
+            if(playersIntern[0]){
+                players.push(playersIntern[0])
             }
         }
         players.orderByElo()
