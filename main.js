@@ -26,5 +26,7 @@ bot.on('message', async function(message){
         Ladder.getImage(message)
     }else if(message.content == "/planning"){
         Planning.getImage(message)
+    }else if(message.content == "!set 5" || message.content == "!set5"){
+        message.reply("Sadge ...")
     }
 })
