@@ -20,7 +20,7 @@ bot.on('ready', async function(){
 })
 
 bot.on('message', async function(message){
-    if(!message.content.startsWith("/")) return
+    if(!message.content.startsWith("/") && !message.content.startsWith("!")) return
 
     if(message.content == "/ladder"){
         Ladder.getImage(message)
