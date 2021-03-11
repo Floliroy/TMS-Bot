@@ -10,6 +10,7 @@ const calendar = new CalendarAPI({
 })
 const calendarId = "96vc137se36nv127mj97k3gb10@group.calendar.google.com"
 
+const fs = require('fs')
 const moment = require('moment')
 moment.locale("fr")
 
@@ -133,6 +134,7 @@ module.exports = class Planning{
 
         //Transform to attachment and send it
         const attachment = new Discord.MessageAttachment(canvas.toBuffer(), "planning.png")
+        fs.writeFileSync("../../Shared/planning.png", canvas.toBuffer("image/png"))
 
         message.channel.send(attachment)
     }
