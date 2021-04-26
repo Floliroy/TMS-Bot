@@ -6,9 +6,9 @@ const Discord = require('discord.js')
 const Canvas = require('canvas')
 
 const summoners = new Array(
-    ["TMS ACKK", "TFTACKK"], ["TMS Shacøvid"], ["TMS Aaron", "TMS Aaron TFT"], ["TMS Rakluuhr"], ["TMS Konogan"], 
-    ["TMS Frobei"], ["TMS Sirutop"], ["TMS Zyguan"], ["TMS Floliroy"], ["TMS Zel"], ["TMS Verigular"], ["TMS Tragoedia"], 
-    ["TMS RONFLEX"], ["TMS cripito"], ["TMS Strelok"], ["TMS Naiirod"], ["TMS Crazy Genius"]
+    ["TMS ACKK", "TFT ACKK"], ["TMS Shacøvid", "TFT Shacøvid"], ["TMS Aaron", "TMS Aaron TFT"], ["TMS Rakluuhr"], ["TMS Konogan"], ["TMS Gazalhi"],
+    ["TMS Frobei"], ["TMS Sirutop"], ["TMS Zyguan"], ["TMS Floliroy"], ["TMS Zel"], ["TMS Verigular"], ["TMS Tragoedia"], ["TMS ZepStyle"],  ["TMS Wazzy"],
+    ["TMS cripito"], ["TMS Strelok"], ["TMS Naiirod", "TMS NairodTV"], ["TMS Crazy Genius", "Crazy Genius TV"], ["TMS bellae"], ["TMS DobliiX", "DobliiX TFT"]
 )
 
 const tierShortcuts = new Map()
