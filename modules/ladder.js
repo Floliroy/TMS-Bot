@@ -59,25 +59,24 @@ function getEloByRank(rank){
 
 async function entriesByName(name){
     try{
-        return await tft.League.entriesByName(name)
+        return await tft.League.entriesByName(encodeURI(name))
     }catch(err){
         if(err.response && err.response.status == 429){
             return await entriesByName(name)
         }else{
-            console.log(err)
             return null
         }
     }
 }
 
 async function getTftSummonerByName(name) {
-    const response = await entriesByName(encodeURI(name))
+    const response = await entriesByName(name)
     const summoner = response[0]
+    console.log(summoner)
     if(!summoner){
-        console.log(summoner)
+        console.log("ALED")
         return null
     }
-
     
     const div = isMasterPlus(summoner.tier) ? "" : rankShortcuts.get(summoner.rank).name
     const rank = `${tierShortcuts.get(summoner.tier).name}${div} ${summoner.leaguePoints}LP`
