@@ -72,7 +72,7 @@ async function entriesByName(name){
 async function getTftSummonerByName(name) {
     const response = await entriesByName(name)
     const summoner = response[0]
-    console.log(summoner)
+    console.log(reponse)
     if(!summoner){
         console.log("ALED")
         return null
