@@ -59,10 +59,10 @@ function getEloByRank(rank){
 
 async function entriesByName(name){
     try{
-        return await tft.League.entriesById(name)
+        return await tft.League.entriesByName(name)
     }catch(err){
         if(err.response && err.response.status == 429){
-            return await entriesById(name)
+            return await entriesByName(name)
         }else{
             console.log(err)
             return null
