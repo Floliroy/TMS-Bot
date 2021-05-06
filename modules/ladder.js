@@ -53,30 +53,32 @@ function getEloByRank(rank){
     if(isMasterPlus(tier)){
         return tierShortcuts.getPoints(tier) + lps
     }else{
-        const rank = args[0].replace(/\D/g,'')
-        return tierShortcuts.getPoints(tier) + rankShortcuts.getPoints(rank) + lps
+        return tierShortcuts.getPoints(tier) + rankShortcuts.getPoints(args[0].replace(/\D/g,'')) + lps
+    }
+}
+
+async function entriesByName(name){
+    try{
+        return await tft.League.entriesById(name)
+    }catch(err){
+        if(err.response && err.response.status == 429){
+            return await entriesById(name)
+        }else{
+            console.log(err)
+            return null
+        }
     }
 }
 
 async function getTftSummonerByName(name) {
-    let redo
-    do{
-        redo = false
-        try{
-            const response = await tft.League.entriesByName(encodeURI(name))
-            const summoner = response[0]
-            
-            const div = isMasterPlus(summoner.tier) ? "" : rankShortcuts.get(summoner.rank).name
-            const rank = `${tierShortcuts.get(summoner.tier).name}${div} ${summoner.leaguePoints}LP`
-            return {name: name, rank: rank}
-        }catch(err){
-            if(!err.response || err.response.status != 429){
-                return null
-            }else{
-                redo = true
-            }
-        }  
-    }while(redo)
+    const response = await entriesByName(encodeURI(name))
+    if(response == null) return null
+
+    const summoner = response[0]
+    
+    const div = isMasterPlus(summoner.tier) ? "" : rankShortcuts.get(summoner.rank).name
+    const rank = `${tierShortcuts.get(summoner.tier).name}${div} ${summoner.leaguePoints}LP`
+    return {name: name, rank: rank}
 }
 
 function addText(text, x, y, maxWidth, context){
