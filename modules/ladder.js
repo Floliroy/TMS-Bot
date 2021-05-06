@@ -74,6 +74,7 @@ async function getTftSummonerByName(name) {
     const response = await entriesByName(encodeURI(name))
     if(response == null) return null
 
+    console.log(response)
     const summoner = response[0]
     
     const div = isMasterPlus(summoner.tier) ? "" : rankShortcuts.get(summoner.rank).name
