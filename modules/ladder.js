@@ -72,8 +72,8 @@ async function entriesByName(name){
 async function getTftSummonerByName(name) {
     const response = await entriesByName(name)
     const summoner = response[0]
-    if(summoner.queueType == "RANKED_TFT_TURBO") console.log(response)
     if(!summoner || summoner.queueType == "RANKED_TFT_TURBO"){
+        if(summoner.queueType == "RANKED_TFT_TURBO") console.log(response)
         return null
     }
     
