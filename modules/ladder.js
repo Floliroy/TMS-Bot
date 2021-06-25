@@ -59,10 +59,16 @@ function getEloByRank(rank){
 
 async function entriesByName(name){
     try{
-        return await tft.League.entriesByName(encodeURI(name))
+        const entries = await tft.League.entriesByName(encodeURI(name))
+        for(const entry of entries){
+            if(entry.queueType == "RANKED_TFT"){
+                return new Array(entry)
+            }
+        }
+        return null
     }catch(err){
         if(err.response && err.response.status == 429){
-            return await entriesByName(name)
+            return entriesByName(name)
         }else{
             return null
         }
@@ -71,10 +77,8 @@ async function entriesByName(name){
 
 async function getTftSummonerByName(name) {
     const response = await entriesByName(name)
-    const summoner = response[response.length-1]
-    if(!summoner || summoner.queueType == "RANKED_TFT_TURBO"){
-        return null
-    }
+    if(!response) return null
+    const summoner = response[0]
     
     const div = isMasterPlus(summoner.tier) ? "" : rankShortcuts.get(summoner.rank).name
     const rank = `${tierShortcuts.get(summoner.tier).name}${div} ${summoner.leaguePoints}LP`
