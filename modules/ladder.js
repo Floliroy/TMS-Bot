@@ -7,7 +7,7 @@ const Canvas = require('canvas')
 
 const summoners = new Array(
     ["TMS ACKK", "TFT ACKK"], ["TMS Shacøvid", "TFT Shacøvid"], ["TMS Aaron", "TMS Aaron TFT"], ["TMS Rakluuhr"], ["TMS Konogan"],
-    ["TMS Frobei"], ["TMS Sirutop"], ["TMS Zyguan"], ["TMS Floliroy"], ["TMS Zel"], ["TMS Jean Keke"], ["TMS Vomendeth"]
+    ["TMS Frobei"], ["TMS Sirutop"], ["TMS Zyguan"], ["TMS Floliroy"], ["TMS Zel"], ["TMS Jean Keke"], ["TMS Vomendeth"],
     ["TMS Crazy Genius", "Crazy Genius TV"], ["TMS bellae"], ["TMS DobliiX", "DobliiX TFT"], ["Annapurna"]
 )
 
